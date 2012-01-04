@@ -10,7 +10,6 @@
 
 aclocal.m4
 autom4te.cache
-depcomp
 missing
 Makefile
 .deps
