@@ -1,6 +1,7 @@
 AC_INIT([games], [0.95], [mbdriscoll@cs.berkeley.edu])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AC_PROG_CC
+AC_PROG_CXX
 AC_PROG_RANLIB
 AC_CONFIG_HEADERS([config.h])
 

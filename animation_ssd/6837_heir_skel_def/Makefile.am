@@ -11,15 +11,3 @@ a2_SOURCES = \
 	SkeletalModel.cpp \
 	Mesh.cpp \
 	main.cpp
-
-noinst_include_HEADERS = \
-	Joint.h \
-	MatrixStack.h \
-	Mesh.h \
-	ModelerView.h \
-	SkeletalModel.h \
-	bitmap.h \
-	camera.h \
-	modelerapp.h \
-	modelerui.h \
-	tuple.h
