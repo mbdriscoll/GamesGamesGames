@@ -5202,6 +5202,8 @@ ac_config_headers="$ac_config_headers config.h"
 ac_config_files="$ac_config_files Makefile vecmath/Makefile animation_ssd/6837_heir_skel_def/Makefile animation_ssd/Makefile rendering/Makefile rendering/ray_caster/6837_ray_caster/Makefile rendering/ray_caster/Makefile rendering/ray_tracer/6837_ray_tracer/Makefile rendering/ray_tracer/Makefile simulation/Makefile simulation/particles_cloth/6837_cloth_sim/Makefile simulation/particles_cloth/Makefile"
 
 
+# TODO: require fltk
+
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure

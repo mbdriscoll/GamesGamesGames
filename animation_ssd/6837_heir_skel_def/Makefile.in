@@ -46,12 +46,15 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_a2_OBJECTS = bitmap.$(OBJEXT) camera.$(OBJEXT) \
-	MatrixStack.$(OBJEXT) modelerapp.$(OBJEXT) modelerui.$(OBJEXT) \
-	ModelerView.$(OBJEXT) Joint.$(OBJEXT) SkeletalModel.$(OBJEXT) \
-	Mesh.$(OBJEXT) main.$(OBJEXT)
+am_a2_OBJECTS = a2-bitmap.$(OBJEXT) a2-camera.$(OBJEXT) \
+	a2-MatrixStack.$(OBJEXT) a2-modelerapp.$(OBJEXT) \
+	a2-modelerui.$(OBJEXT) a2-ModelerView.$(OBJEXT) \
+	a2-Joint.$(OBJEXT) a2-SkeletalModel.$(OBJEXT) \
+	a2-Mesh.$(OBJEXT) a2-main.$(OBJEXT)
 a2_OBJECTS = $(am_a2_OBJECTS)
 a2_LDADD = $(LDADD)
+a2_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(a2_LDFLAGS) $(LDFLAGS) \
+	-o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -162,6 +165,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+a2_CPPFLAGS = ${GL_CFLAGS} -I${top_srcdir}/vecmath
+a2_LDFLAGS = ${GL_LIBS}
 a2_SOURCES = \
 	bitmap.cpp \
 	camera.cpp \
@@ -247,7 +252,7 @@ clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 a2$(EXEEXT): $(a2_OBJECTS) $(a2_DEPENDENCIES) 
 	@rm -f a2$(EXEEXT)
-	$(CXXLINK) $(a2_OBJECTS) $(a2_LDADD) $(LIBS)
+	$(a2_LINK) $(a2_OBJECTS) $(a2_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -255,16 +260,16 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Joint.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MatrixStack.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Mesh.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ModelerView.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SkeletalModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bitmap.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/camera.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/modelerapp.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/modelerui.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-Joint.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-MatrixStack.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-Mesh.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-ModelerView.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-SkeletalModel.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-bitmap.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-camera.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-modelerapp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/a2-modelerui.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -279,6 +284,146 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+a2-bitmap.o: bitmap.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-bitmap.o -MD -MP -MF $(DEPDIR)/a2-bitmap.Tpo -c -o a2-bitmap.o `test -f 'bitmap.cpp' || echo '$(srcdir)/'`bitmap.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-bitmap.Tpo $(DEPDIR)/a2-bitmap.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='bitmap.cpp' object='a2-bitmap.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-bitmap.o `test -f 'bitmap.cpp' || echo '$(srcdir)/'`bitmap.cpp
+
+a2-bitmap.obj: bitmap.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-bitmap.obj -MD -MP -MF $(DEPDIR)/a2-bitmap.Tpo -c -o a2-bitmap.obj `if test -f 'bitmap.cpp'; then $(CYGPATH_W) 'bitmap.cpp'; else $(CYGPATH_W) '$(srcdir)/bitmap.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-bitmap.Tpo $(DEPDIR)/a2-bitmap.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='bitmap.cpp' object='a2-bitmap.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-bitmap.obj `if test -f 'bitmap.cpp'; then $(CYGPATH_W) 'bitmap.cpp'; else $(CYGPATH_W) '$(srcdir)/bitmap.cpp'; fi`
+
+a2-camera.o: camera.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-camera.o -MD -MP -MF $(DEPDIR)/a2-camera.Tpo -c -o a2-camera.o `test -f 'camera.cpp' || echo '$(srcdir)/'`camera.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-camera.Tpo $(DEPDIR)/a2-camera.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='camera.cpp' object='a2-camera.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-camera.o `test -f 'camera.cpp' || echo '$(srcdir)/'`camera.cpp
+
+a2-camera.obj: camera.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-camera.obj -MD -MP -MF $(DEPDIR)/a2-camera.Tpo -c -o a2-camera.obj `if test -f 'camera.cpp'; then $(CYGPATH_W) 'camera.cpp'; else $(CYGPATH_W) '$(srcdir)/camera.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-camera.Tpo $(DEPDIR)/a2-camera.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='camera.cpp' object='a2-camera.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-camera.obj `if test -f 'camera.cpp'; then $(CYGPATH_W) 'camera.cpp'; else $(CYGPATH_W) '$(srcdir)/camera.cpp'; fi`
+
+a2-MatrixStack.o: MatrixStack.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-MatrixStack.o -MD -MP -MF $(DEPDIR)/a2-MatrixStack.Tpo -c -o a2-MatrixStack.o `test -f 'MatrixStack.cpp' || echo '$(srcdir)/'`MatrixStack.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-MatrixStack.Tpo $(DEPDIR)/a2-MatrixStack.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MatrixStack.cpp' object='a2-MatrixStack.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-MatrixStack.o `test -f 'MatrixStack.cpp' || echo '$(srcdir)/'`MatrixStack.cpp
+
+a2-MatrixStack.obj: MatrixStack.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-MatrixStack.obj -MD -MP -MF $(DEPDIR)/a2-MatrixStack.Tpo -c -o a2-MatrixStack.obj `if test -f 'MatrixStack.cpp'; then $(CYGPATH_W) 'MatrixStack.cpp'; else $(CYGPATH_W) '$(srcdir)/MatrixStack.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-MatrixStack.Tpo $(DEPDIR)/a2-MatrixStack.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MatrixStack.cpp' object='a2-MatrixStack.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-MatrixStack.obj `if test -f 'MatrixStack.cpp'; then $(CYGPATH_W) 'MatrixStack.cpp'; else $(CYGPATH_W) '$(srcdir)/MatrixStack.cpp'; fi`
+
+a2-modelerapp.o: modelerapp.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-modelerapp.o -MD -MP -MF $(DEPDIR)/a2-modelerapp.Tpo -c -o a2-modelerapp.o `test -f 'modelerapp.cpp' || echo '$(srcdir)/'`modelerapp.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-modelerapp.Tpo $(DEPDIR)/a2-modelerapp.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='modelerapp.cpp' object='a2-modelerapp.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-modelerapp.o `test -f 'modelerapp.cpp' || echo '$(srcdir)/'`modelerapp.cpp
+
+a2-modelerapp.obj: modelerapp.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-modelerapp.obj -MD -MP -MF $(DEPDIR)/a2-modelerapp.Tpo -c -o a2-modelerapp.obj `if test -f 'modelerapp.cpp'; then $(CYGPATH_W) 'modelerapp.cpp'; else $(CYGPATH_W) '$(srcdir)/modelerapp.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-modelerapp.Tpo $(DEPDIR)/a2-modelerapp.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='modelerapp.cpp' object='a2-modelerapp.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-modelerapp.obj `if test -f 'modelerapp.cpp'; then $(CYGPATH_W) 'modelerapp.cpp'; else $(CYGPATH_W) '$(srcdir)/modelerapp.cpp'; fi`
+
+a2-modelerui.o: modelerui.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-modelerui.o -MD -MP -MF $(DEPDIR)/a2-modelerui.Tpo -c -o a2-modelerui.o `test -f 'modelerui.cpp' || echo '$(srcdir)/'`modelerui.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-modelerui.Tpo $(DEPDIR)/a2-modelerui.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='modelerui.cpp' object='a2-modelerui.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-modelerui.o `test -f 'modelerui.cpp' || echo '$(srcdir)/'`modelerui.cpp
+
+a2-modelerui.obj: modelerui.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-modelerui.obj -MD -MP -MF $(DEPDIR)/a2-modelerui.Tpo -c -o a2-modelerui.obj `if test -f 'modelerui.cpp'; then $(CYGPATH_W) 'modelerui.cpp'; else $(CYGPATH_W) '$(srcdir)/modelerui.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-modelerui.Tpo $(DEPDIR)/a2-modelerui.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='modelerui.cpp' object='a2-modelerui.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-modelerui.obj `if test -f 'modelerui.cpp'; then $(CYGPATH_W) 'modelerui.cpp'; else $(CYGPATH_W) '$(srcdir)/modelerui.cpp'; fi`
+
+a2-ModelerView.o: ModelerView.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-ModelerView.o -MD -MP -MF $(DEPDIR)/a2-ModelerView.Tpo -c -o a2-ModelerView.o `test -f 'ModelerView.cpp' || echo '$(srcdir)/'`ModelerView.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-ModelerView.Tpo $(DEPDIR)/a2-ModelerView.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ModelerView.cpp' object='a2-ModelerView.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-ModelerView.o `test -f 'ModelerView.cpp' || echo '$(srcdir)/'`ModelerView.cpp
+
+a2-ModelerView.obj: ModelerView.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-ModelerView.obj -MD -MP -MF $(DEPDIR)/a2-ModelerView.Tpo -c -o a2-ModelerView.obj `if test -f 'ModelerView.cpp'; then $(CYGPATH_W) 'ModelerView.cpp'; else $(CYGPATH_W) '$(srcdir)/ModelerView.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-ModelerView.Tpo $(DEPDIR)/a2-ModelerView.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ModelerView.cpp' object='a2-ModelerView.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-ModelerView.obj `if test -f 'ModelerView.cpp'; then $(CYGPATH_W) 'ModelerView.cpp'; else $(CYGPATH_W) '$(srcdir)/ModelerView.cpp'; fi`
+
+a2-Joint.o: Joint.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-Joint.o -MD -MP -MF $(DEPDIR)/a2-Joint.Tpo -c -o a2-Joint.o `test -f 'Joint.cpp' || echo '$(srcdir)/'`Joint.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-Joint.Tpo $(DEPDIR)/a2-Joint.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Joint.cpp' object='a2-Joint.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-Joint.o `test -f 'Joint.cpp' || echo '$(srcdir)/'`Joint.cpp
+
+a2-Joint.obj: Joint.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-Joint.obj -MD -MP -MF $(DEPDIR)/a2-Joint.Tpo -c -o a2-Joint.obj `if test -f 'Joint.cpp'; then $(CYGPATH_W) 'Joint.cpp'; else $(CYGPATH_W) '$(srcdir)/Joint.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-Joint.Tpo $(DEPDIR)/a2-Joint.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Joint.cpp' object='a2-Joint.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-Joint.obj `if test -f 'Joint.cpp'; then $(CYGPATH_W) 'Joint.cpp'; else $(CYGPATH_W) '$(srcdir)/Joint.cpp'; fi`
+
+a2-SkeletalModel.o: SkeletalModel.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-SkeletalModel.o -MD -MP -MF $(DEPDIR)/a2-SkeletalModel.Tpo -c -o a2-SkeletalModel.o `test -f 'SkeletalModel.cpp' || echo '$(srcdir)/'`SkeletalModel.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-SkeletalModel.Tpo $(DEPDIR)/a2-SkeletalModel.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SkeletalModel.cpp' object='a2-SkeletalModel.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-SkeletalModel.o `test -f 'SkeletalModel.cpp' || echo '$(srcdir)/'`SkeletalModel.cpp
+
+a2-SkeletalModel.obj: SkeletalModel.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-SkeletalModel.obj -MD -MP -MF $(DEPDIR)/a2-SkeletalModel.Tpo -c -o a2-SkeletalModel.obj `if test -f 'SkeletalModel.cpp'; then $(CYGPATH_W) 'SkeletalModel.cpp'; else $(CYGPATH_W) '$(srcdir)/SkeletalModel.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-SkeletalModel.Tpo $(DEPDIR)/a2-SkeletalModel.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SkeletalModel.cpp' object='a2-SkeletalModel.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-SkeletalModel.obj `if test -f 'SkeletalModel.cpp'; then $(CYGPATH_W) 'SkeletalModel.cpp'; else $(CYGPATH_W) '$(srcdir)/SkeletalModel.cpp'; fi`
+
+a2-Mesh.o: Mesh.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-Mesh.o -MD -MP -MF $(DEPDIR)/a2-Mesh.Tpo -c -o a2-Mesh.o `test -f 'Mesh.cpp' || echo '$(srcdir)/'`Mesh.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-Mesh.Tpo $(DEPDIR)/a2-Mesh.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Mesh.cpp' object='a2-Mesh.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-Mesh.o `test -f 'Mesh.cpp' || echo '$(srcdir)/'`Mesh.cpp
+
+a2-Mesh.obj: Mesh.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-Mesh.obj -MD -MP -MF $(DEPDIR)/a2-Mesh.Tpo -c -o a2-Mesh.obj `if test -f 'Mesh.cpp'; then $(CYGPATH_W) 'Mesh.cpp'; else $(CYGPATH_W) '$(srcdir)/Mesh.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-Mesh.Tpo $(DEPDIR)/a2-Mesh.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Mesh.cpp' object='a2-Mesh.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-Mesh.obj `if test -f 'Mesh.cpp'; then $(CYGPATH_W) 'Mesh.cpp'; else $(CYGPATH_W) '$(srcdir)/Mesh.cpp'; fi`
+
+a2-main.o: main.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-main.o -MD -MP -MF $(DEPDIR)/a2-main.Tpo -c -o a2-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-main.Tpo $(DEPDIR)/a2-main.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='a2-main.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
+
+a2-main.obj: main.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT a2-main.obj -MD -MP -MF $(DEPDIR)/a2-main.Tpo -c -o a2-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/a2-main.Tpo $(DEPDIR)/a2-main.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='a2-main.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(a2_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o a2-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

@@ -29,4 +29,6 @@ AC_CONFIG_FILES([
    simulation/particles_cloth/Makefile
 ])
 
+# TODO: require fltk
+
 AC_OUTPUT
