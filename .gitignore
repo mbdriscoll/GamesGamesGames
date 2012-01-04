@@ -10,7 +10,6 @@
 
 aclocal.m4
 autom4te.cache
-missing
 Makefile
 .deps
 config.log
