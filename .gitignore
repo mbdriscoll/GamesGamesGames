@@ -14,3 +14,10 @@ autom4te.cache
 depcomp
 missing
 install-sh
+Makefile
+.deps
+config.log
+config.status
+stamp-h1
+config.h
+config.h.in~
