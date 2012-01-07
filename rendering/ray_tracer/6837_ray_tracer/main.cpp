@@ -111,7 +111,8 @@ int main( int argc, char* argv[] )
 
     SceneParser sp = SceneParser(filename);
 
-    RayTracer rt = RayTracer(&sp, max_bounces, cutoff_weight, shadows, refraction); 
+    // mbdriscoll TODO: doesn't compile
+    RayTracer rt = RayTracer(); // (&sp, max_bounces, cutoff_weight, shadows, refraction); 
 
     Image image( w , h );
     Image depth( w , h );

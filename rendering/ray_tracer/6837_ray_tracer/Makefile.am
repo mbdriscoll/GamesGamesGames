@@ -1,5 +1,8 @@
 bin_PROGRAMS = tracer
 
+AM_CPPFLAGS = ${VECM_CFLAGS}
+AM_LDFLAGS = ${VECM_LDFLAGS}
+
 tracer_SOURCES = \
 	main.cpp \
 	BoundingBox.cpp \
