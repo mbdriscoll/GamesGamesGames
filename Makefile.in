@@ -34,7 +34,7 @@ POST_UNINSTALL = :
 subdir = .
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/config.h.in \
-	$(top_srcdir)/configure depcomp install-sh missing
+	$(top_srcdir)/configure m4/depcomp m4/install-sh m4/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_have_opengl.m4 \
 	$(top_srcdir)/m4/ax_fltk_devel.m4 $(top_srcdir)/configure.ac

@@ -1,7 +1,9 @@
 AC_INIT([games], [0.95], [mbdriscoll@cs.berkeley.edu])
 
-AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AC_CONFIG_HEADER([config.h])
+AC_CONFIG_AUX_DIR([m4])
+
+AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 
 AC_PROG_CC
 AC_PROG_CXX
