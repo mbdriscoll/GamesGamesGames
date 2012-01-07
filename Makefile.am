@@ -1,1 +1,1 @@
-SUBDIRS = animation_ssd rendering simulation vecmath
+SUBDIRS = vecmath animation_ssd rendering simulation

@@ -1,5 +1,7 @@
 AC_INIT([games], [0.95], [mbdriscoll@cs.berkeley.edu])
+
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
+AC_CONFIG_HEADER([config.h])
 
 AC_PROG_CC
 AC_PROG_CXX
@@ -8,7 +10,8 @@ AC_PROG_RANLIB
 m4_include([m4/ax_have_opengl.m4])
 AX_HAVE_OPENGL
 
-AC_CONFIG_HEADERS([config.h])
+m4_include([m4/ax_fltk_devel.m4])
+AX_FLTK_DEVEL
 
 AC_CONFIG_FILES([
    Makefile
@@ -29,6 +32,6 @@ AC_CONFIG_FILES([
    simulation/particles_cloth/Makefile
 ])
 
-# TODO: require fltk
+AC_SUBST([VECM_CFLAGS], ['-I$(top_srcdir)/vecmath'])
 
 AC_OUTPUT

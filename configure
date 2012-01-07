@@ -568,6 +568,10 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+VECM_CFLAGS
+FLTK_LDFLAGS
+FLTK_CFLAGS
+fltk
 GL_LIBS
 GL_CFLAGS
 X_EXTRA_LIBS
@@ -667,6 +671,7 @@ enable_dependency_tracking
 with_x
 with___with_Mesa
 enable_Mesa
+with_fltk
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1310,6 +1315,7 @@ Optional Packages:
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-x                use the X Window System
 Prefer the Mesa library over a vendors native OpenGL library (default=yes)
+  --with-fltk-config=PATH	Specify the path to the fltk-config utility
 
 Some influential environment variables:
   CC          C compiler command
@@ -1981,6 +1987,7 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
+
 am__api_version='1.11'
 
 ac_aux_dir=
@@ -2487,6 +2494,8 @@ am__tar='${AMTAR} chof - "$$tardir"'; am__untar='${AMTAR} xf -'
 
 
 
+
+ac_config_headers="$ac_config_headers config.h"
 
 
 ac_ext=c
@@ -5188,7 +5197,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ax_cv_have_OpenGL" >&5
 $as_echo "$ax_cv_have_OpenGL" >&6; }
-  GL_CFLAGS="$ax_cv_GL_CFLAGS"
+  GL_CFLAGS="$ax_cv_GL_CFLAGS -I${x_includes}"
   GL_LIBS="$ax_cv_GL_LIBS"
   have_GL="$ax_cv_have_GL"
   have_GLU="$ax_cv_have_GLU"
@@ -5196,13 +5205,115 @@ $as_echo "$ax_cv_have_OpenGL" >&6; }
   have_glut="$ax_cv_have_glut"
 
 
-ac_config_headers="$ac_config_headers config.h"
+# ===========================================================================
+#      URL
+# ===========================================================================
+#
+# SYNOPSIS
+#
+#   AX_FLTK_DEVEL()
+#
+# DESCRIPTION
+#
+#
+# LICENSE
+#
+
+# This is what autoupdate's m4 run will expand.  It fires
+# the warning (with _au_warn_XXX), outputs it into the
+# updated configure.ac (with AC_DIAGNOSE), and then outputs
+# the replacement expansion.
+
+
+# This is an auxiliary macro that is also run when
+# autoupdate runs m4.  It simply calls m4_warning, but
+# we need a wrapper so that each warning is emitted only
+# once.  We break the quoting in m4_warning's argument in
+# order to expand this macro's arguments, not AU_DEFUN's.
+
+
+# Finally, this is the expansion that is picked up by
+# autoconf.  It tells the user to run autoupdate, and
+# then outputs the replacement expansion.  We do not care
+# about autoupdate's warning because that contains
+# information on what to do *after* running autoupdate.
+
+
+
+
+
+# Check whether --with-fltk was given.
+if test "${with_fltk+set}" = set; then :
+  withval=$with_fltk;
+fi
+
+
+    if test -z "$with_fltk"; then
+	    # Extract the first word of "fltk-config", so it can be a program name with args.
+set dummy fltk-config; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_fltk+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $fltk in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_fltk="$fltk" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_path_fltk="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+fltk=$ac_cv_path_fltk
+if test -n "$fltk"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $fltk" >&5
+$as_echo "$fltk" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+        { $as_echo "$as_me:${as_lineno-$LINENO}: No path to fltk-config specified. From PATH, using: $fltk" >&5
+$as_echo "$as_me: No path to fltk-config specified. From PATH, using: $fltk" >&6;}
+    else
+        fltk=$with_fltk
+
+    fi
+
+	if test -z "$fltk"; then
+	   as_fn_error $? "Cannot find fltk-config in your system path" "$LINENO" 5
+	fi
+
+	# compiler flags
+    FLTK_CFLAGS=`$fltk --use-gl --cxxflags`
+
+
+	# linking flags
+    FLTK_LDFLAGS=`$fltk --use-gl --ldflags`
+
 
 
 ac_config_files="$ac_config_files Makefile vecmath/Makefile animation_ssd/6837_heir_skel_def/Makefile animation_ssd/Makefile rendering/Makefile rendering/ray_caster/6837_ray_caster/Makefile rendering/ray_caster/Makefile rendering/ray_tracer/6837_ray_tracer/Makefile rendering/ray_tracer/Makefile simulation/Makefile simulation/particles_cloth/6837_cloth_sim/Makefile simulation/particles_cloth/Makefile"
 
 
-# TODO: require fltk
+VECM_CFLAGS='-I$(top_srcdir)/vecmath'
+
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -5937,8 +6048,8 @@ cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
 for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
-    "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
+    "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "vecmath/Makefile") CONFIG_FILES="$CONFIG_FILES vecmath/Makefile" ;;
     "animation_ssd/6837_heir_skel_def/Makefile") CONFIG_FILES="$CONFIG_FILES animation_ssd/6837_heir_skel_def/Makefile" ;;

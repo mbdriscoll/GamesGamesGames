@@ -153,7 +153,7 @@ dnl bugfix: dont forget to cache this variables, too
     ax_cv_have_GLX="$have_GLX"
     ax_cv_have_glut="$have_glut"
   ])
-  GL_CFLAGS="$ax_cv_GL_CFLAGS"
+  GL_CFLAGS="$ax_cv_GL_CFLAGS -I${x_includes}"
   GL_LIBS="$ax_cv_GL_LIBS"
   have_GL="$ax_cv_have_GL"
   have_GLU="$ax_cv_have_GLU"
