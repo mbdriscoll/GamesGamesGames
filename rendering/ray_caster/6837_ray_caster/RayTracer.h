@@ -23,7 +23,7 @@ class RayTracer {
 public:
     RayTracer(){};
     
-    RayTracer(SceneParser *sp, int mb, float wc, bool sh);
+    RayTracer(SceneParser *sp, int mb, float wc, bool sh, bool rf);
     
     virtual ~RayTracer(){};
     

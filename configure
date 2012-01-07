@@ -568,6 +568,7 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+VECM_LDFLAGS
 VECM_CFLAGS
 FLTK_LDFLAGS
 FLTK_CFLAGS
@@ -5313,6 +5314,8 @@ ac_config_files="$ac_config_files Makefile vecmath/Makefile animation_ssd/6837_h
 
 
 VECM_CFLAGS='-I$(top_srcdir)/vecmath'
+
+VECM_LDFLAGS='-L$(top_builddir)/vecmath -lvecmath'
 
 
 cat >confcache <<\_ACEOF

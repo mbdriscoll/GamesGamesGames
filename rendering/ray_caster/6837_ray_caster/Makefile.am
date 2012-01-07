@@ -1,5 +1,8 @@
 bin_PROGRAMS = caster
 
+AM_CPPFLAGS = ${VECM_CFLAGS}
+AM_LDFLAGS = ${VECM_LDFLAGS}
+
 caster_SOURCES = \
 	main.cpp \
 	BoundingBox.cpp \

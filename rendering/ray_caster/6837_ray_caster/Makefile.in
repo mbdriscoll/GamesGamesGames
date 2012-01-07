@@ -122,6 +122,7 @@ SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
 VECM_CFLAGS = @VECM_CFLAGS@
+VECM_LDFLAGS = @VECM_LDFLAGS@
 VERSION = @VERSION@
 XMKMF = @XMKMF@
 X_CFLAGS = @X_CFLAGS@
@@ -172,6 +173,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+AM_CPPFLAGS = ${VECM_CFLAGS}
+AM_LDFLAGS = ${VECM_LDFLAGS}
 caster_SOURCES = \
 	main.cpp \
 	BoundingBox.cpp \
