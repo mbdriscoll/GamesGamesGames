@@ -33,5 +33,6 @@ AC_CONFIG_FILES([
 ])
 
 AC_SUBST([VECM_CFLAGS], ['-I$(top_srcdir)/vecmath'])
+AC_SUBST([VECM_LDFLAGS], ['-L$(top_builddir)/vecmath -lvecmath'])
 
 AC_OUTPUT
