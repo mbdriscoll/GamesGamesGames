@@ -4,10 +4,9 @@
 *.a
 
 *~      # emacs temp files
-.*.swp  # vim temp files
+*.swp  # vim temp files
 
 # autotools files
-
 aclocal.m4
 autom4te.cache
 Makefile
@@ -17,3 +16,9 @@ config.status
 stamp-h1
 config.h
 config.h.in~
+
+# built programs
+a2
+a3
+caster
+tracer
